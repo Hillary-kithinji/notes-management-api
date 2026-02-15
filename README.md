@@ -15,5 +15,4 @@ This API allows users to create, view, update, and delete personal notes. Each n
 
 ---
 
-## Project Structure
 
