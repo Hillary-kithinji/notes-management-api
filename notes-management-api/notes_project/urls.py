@@ -16,10 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to the Notes Management API!")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('notes.urls')),  # Your API routes
-    path('api-auth/', include('rest_framework.urls')),  # Optional for login in browsable API
+    path('api/', include('notes.urls')),  # include your app urls here
+    path('api-auth/', include('rest_framework.urls')),  # optional DRF login
+    path('', home),  # home page
 ]
+
+
 
