@@ -49,7 +49,20 @@ Each note has the following fields:
 | DELETE | `/api/notes/<id>/` | Delete a note |
 
 > Users can only access their own notes.
->   
+
+The API provides clear error messages and logging for easier debugging.
+
+### Common API Errors Tested with Postman
+
+| HTTP Status | Name | When It Happens | Example Response |
+|-------------|------|----------------|----------------|
+| 400 | Bad Request | Invalid input data | `{ "title": ["This field is required."] }` |
+| 401 | Unauthorized | No token or invalid token | `{ "detail": "Authentication credentials were not provided." }` |
+| 403 | Forbidden | User tries to access another user’s note | `{ "detail": "You do not have permission to perform this action." }` |
+| 404 | Not Found | Note ID does not exist | `{ "detail": "Not found." }` |
+| 405 | Method Not Allowed | Invalid HTTP method | `{ "detail": "Method “POST” not allowed." }` |
+| 500 | Internal Server Error | Server-side error | `{ "detail": "Internal server error." }` |
+
 ## Future Improvements
 
 - Deployment – Production-ready hosting (Heroku, AWS, etc.)  
