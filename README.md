@@ -52,16 +52,24 @@ Each note has the following fields:
 
 The API provides clear error messages and logging for easier debugging.
 
-### Common API Errors Tested with Postman
 
-| HTTP Status | Name | When It Happens | Example Response |
+
+## HTTP Status Codes Reference Tested using Postman
+
+The Notes Management System API uses proper HTTP status codes to communicate the result of requests.  
+
+| Status Code | Name | When It Happens | Example Response |
 |-------------|------|----------------|----------------|
-| 400 | Bad Request | Invalid input data | `{ "title": ["This field is required."] }` |
-| 401 | Unauthorized | No token or invalid token | `{ "detail": "Authentication credentials were not provided." }` |
-| 403 | Forbidden | User tries to access another user’s note | `{ "detail": "You do not have permission to perform this action." }` |
-| 404 | Not Found | Note ID does not exist | `{ "detail": "Not found." }` |
-| 405 | Method Not Allowed | Invalid HTTP method | `{ "detail": "Method “POST” not allowed." }` |
-| 500 | Internal Server Error | Server-side error | `{ "detail": "Internal server error." }` |
+| **200 OK** | Success | GET request or successful PUT/PATCH | `{ "id": 1, "title": "Note", "content": "Test" }` |
+| **201 Created** | Resource Created | POST request successfully creates a new note | `{ "id": 2, "title": "New Note", "content": "Hello" }` |
+| **204 No Content** | Success, no data | DELETE request successfully deletes a note | *No body* |
+| **400 Bad Request** | Client error | Invalid data in POST/PUT | `{ "title": ["This field is required."] }` |
+| **401 Unauthorized** | Authentication error | No token or invalid token | `{ "detail": "Authentication credentials were not provided." }` |
+| **403 Forbidden** | Permission error | User tries to access another user's note | `{ "detail": "You do not have permission to perform this action." }` |
+| **404 Not Found** | Resource not found | Note ID does not exist | `{ "detail": "Not found." }` |
+| **405 Method Not Allowed** | Wrong HTTP method | POST to a GET-only endpoint | `{ "detail": "Method “POST” not allowed." }` |
+| **500 Internal Server Error** | Server-side error | Unexpected backend error | `{ "detail": "Internal server error." }` |
+
 
 ## Future Improvements
 
